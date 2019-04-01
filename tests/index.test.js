@@ -1,10 +1,12 @@
 const path = require('path')
+const mockdate = require('mockdate')
 const { Toolkit } = require('actions-toolkit')
 
 describe('create-an-issue', () => {
   let actionFn, tools
 
   beforeEach(() => {
+    mockdate.set(1554126555814)
     Toolkit.run = jest.fn(fn => { actionFn = fn })
     require('..')
 
@@ -61,5 +63,16 @@ describe('create-an-issue', () => {
     await actionFn(tools)
     expect(tools.github.issues.create).toHaveBeenCalled()
     expect(tools.github.issues.create.mock.calls).toMatchSnapshot()
+  })
+
+  it('creates a new issue with dates', async () => {
+    tools.arguments._[0] = '.github/dates.md'
+    await actionFn(tools)
+    expect(tools.github.issues.create).toHaveBeenCalled()
+    expect(tools.github.issues.create.mock.calls).toMatchSnapshot()
+  })
+
+  afterEach(() => {
+    mockdate.reset()
   })
 })

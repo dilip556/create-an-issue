@@ -44,6 +44,22 @@ Array [
 ]
 `;
 
+exports[`create-an-issue creates a new issue with dates 1`] = `
+Array [
+  Array [
+    Object {
+      "assignees": Array [],
+      "body": "### Monday, Apr 1st",
+      "labels": Array [],
+      "milestone": undefined,
+      "owner": "JasonEtco",
+      "repo": "waddup",
+      "title": "Weekly Meeting Notes: April 1st - 6th",
+    },
+  ],
+]
+`;
+
 exports[`create-an-issue creates a new issue with some template variables 1`] = `
 Array [
   Array [
